@@ -7,7 +7,6 @@ import dotenv from "dotenv";
 dotenv.config()
 import restaurant from "./services/restaurant.js";
 
-const pgp = pgPromise();
 const app = express();
 
 

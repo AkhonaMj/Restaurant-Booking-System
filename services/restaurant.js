@@ -26,7 +26,7 @@ const restaurant = (db) => {
     }
 
     async function getBookedTablesForUser(username) {
-        await db.any("SELECT FROM ")
+        await db.any("SELECT FROM table_booking")
         // get user table booking
     }
 
