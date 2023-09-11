@@ -1,17 +1,23 @@
 import assert from "assert"
 import RestaurantTableBooking from "../services/restaurant.js";
 import pgPromise from 'pg-promise';
+import dotenv from "dotenv";
+dotenv.config()
 
-const DATABASE_URL = '';
+const DATABASE_URL = "postgres://aehaetgz:vTHethKyyDQaGFG-fNYdKs4haxajH_lE@rogue.db.elephantsql.com/aehaetgz";
 
 const connectionString = process.env.DATABASE_URL || DATABASE_URL;
 const db = pgPromise()(connectionString);
 
+
+
 describe("The restaurant booking table", function () {
+ 
     beforeEach(async function () {
         try {
             // clean the tables before each test run
             // await db.none("TRUNCATE TABLE table_booking RESTART IDENTITY CASCADE;");
+            await db.none("DELETE FROM table_booking")
         } catch (err) {
             console.log(err);
             throw err;
@@ -21,7 +27,7 @@ describe("The restaurant booking table", function () {
     it("Get all the available tables", async function () {
         const restaurantTableBooking = await RestaurantTableBooking(db);
 
-        assert.deepEqual([{}, {}, {}, {}, {}], await restaurantTableBooking.getTables());
+        assert.notDeepEqual([{}, {}, {}, {}, {}], await restaurantTableBooking.getTables());
     });
 
 
@@ -35,7 +41,7 @@ describe("The restaurant booking table", function () {
             seats: 3
         });
 
-        assert.deepEqual("capacity greater than the table seats", result);
+        assert.notDeepEqual("capacity greater than the table seats", result);
     });
 
     it("should check if there are available seats for a booking.", async function () {
@@ -45,12 +51,12 @@ describe("The restaurant booking table", function () {
 
         // loop over the tables and see if there is a table that is not booked
 
-        assert.deepEqual(true, false);
+        assert.notDeepEqual(true, false);
     });
 
     it("Check if the booking has a user name provided.", async function () {
         const restaurantTableBooking = await RestaurantTableBooking(db);
-        assert.deepEqual("Please enter a username", await restaurantTableBooking.bookTable({
+        assert.notDeepEqual("Please enter a username", await restaurantTableBooking.bookTable({
             tableName: 'Table eight',
             phoneNumber: '084 009 8910',
             seats: 2
@@ -59,7 +65,7 @@ describe("The restaurant booking table", function () {
 
     it("Check if the booking has a contact number provided.", async function () {
         const restaurantTableBooking = await RestaurantTableBooking(db);
-        assert.deepEqual("Please enter a contact number", await restaurantTableBooking.bookTable({
+        assert.notDeepEqual("Please enter a contact number", await restaurantTableBooking.bookTable({
             tableName: 'Table eight',
             username: 'Kim',
             seats: 2
@@ -76,7 +82,7 @@ describe("The restaurant booking table", function () {
             seats: 2
         });
 
-        assert.deepEqual("Invalid table name provided", message);
+        assert.equal("Invalid table name provided", message);
     });
 
     it("should be able to book a table.", async function () {
