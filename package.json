@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "nodemon",
     "start": "node index.js",
-    "test": "mocha ./test/restaurant.js"
+    "test": "mocha ./test/restaurant.test.js"
   },
   "repository": {
     "type": "git",
