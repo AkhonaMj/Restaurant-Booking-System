@@ -37,6 +37,7 @@ app.get("/", (req, res) => {
 
     res.render('index', { tables: [{}, {}, { booked: true }, {}, {}, {}] })
 });
+
 app.post("/book", (req, res) => {
     restaurantInst.getTables(req.body);
     restaurantInst.bookTable(req.body.tableId);
