@@ -5,10 +5,10 @@
   "main": "index.js",
   "type": "module",
   "directories": {
-    "test": "test",
-    "engines": {
-      "node": ">= 16.0.0"
-    }
+    "test": "test"
+  },
+  "engines": {
+    "node": ">= 16.0.0"
   },
   "scripts": {
     "dev": "nodemon",
