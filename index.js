@@ -25,7 +25,7 @@ app.engine('handlebars', handlebarSetup);
 app.set('view engine', 'handlebars');
 
 const db = pgp({
-    connectionString: process.env.DATABASE_URL,
+    DATABASE_URL: process.env.DATABASE_URL,
     ssl: {
         rejectUnauthorized: false
     }
