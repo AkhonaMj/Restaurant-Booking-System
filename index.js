@@ -37,12 +37,11 @@ app.get("/", (req, res) => {
 
     res.render('index', { tables: [{}, {}, { booked: true }, {}, {}, {}] })
 });
-
 app.post("/book", (req, res) => {
-    restaurantInst.getTables(req.body);
+    restaurantInst.getTables();
     restaurantInst.bookTable(req.body.tableId);
     if (!restaurantInst.getTables()) {
-        req.flash('error', "");
+        //req.flash('error', "");
         res.redirect('/')
     }
 })
