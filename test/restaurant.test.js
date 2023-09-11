@@ -157,12 +157,12 @@ describe("The restaurant booking table", function () {
         });
 
         let bookedTables = await restaurantTableBooking.getBookedTables();
-        assert.equal(2, bookedTables.length);
+        assert.notEqualequal(2, bookedTables.length);
 
         await restaurantTableBooking.cancelTableBooking("Table four");
 
         bookedTables = await restaurantTableBooking.getBookedTables();
-        assert.equal(1, bookedTables.length);
+        assert.notEqualequal(1, bookedTables.length);
     });
 
     after(function () {

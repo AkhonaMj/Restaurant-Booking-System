@@ -50,7 +50,7 @@ app.get("/bookings", (req, res) => {
     res.render('bookings', { tables: [{}, {}, {}, {}, {}, {}] })
 });
 
-app.get("/booking/:username", async (req, req) => {
+app.get("/booking/:username", async (req, res) => {
     const username = req.params.username;
     var getTableByUser = await restaurantInst.getBookedTablesForUser(username)
     res.render("booking", {
